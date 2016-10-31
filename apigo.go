@@ -1,6 +1,8 @@
 package main
 
-import "time"
+import (
+	"time"
+)
 
 type Todo struct {
     Name      string    `json:"name"`
@@ -17,3 +19,11 @@ type Manga struct {
 }
 
 type Mangas []Manga
+
+type User struct {
+    Name      string    `json:"name"`
+    Completed bool      `json:"completed"`
+    Due       time.Time `json:"due"`
+}
+
+type Users []User

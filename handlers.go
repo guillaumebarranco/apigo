@@ -6,6 +6,8 @@ import (
     "net/http"
 
     "github.com/gorilla/mux"
+    "database/sql"
+    _ "github.com/go-sql-driver/mysql"
 )
 
 func Index(w http.ResponseWriter, r *http.Request) {
@@ -44,6 +46,31 @@ func MangasShow(w http.ResponseWriter, r * http.Request) {
     w.WriteHeader(http.StatusOK)
 
     if err := json.NewEncoder(w).Encode(mangas); err != nil {
+        panic(err)
+    }
+}
+
+func UsersShow(w http.ResponseWriter, r * http.Request) {
+
+    con, err := sql.Open("mysql", "root"+":"+""+"@/"+"lg")
+    defer con.Close()
+
+    rows, err := con.Query("select name from roles")
+
+    if err != nil { /* error handling */}
+    items := make([]*User, 0, 10)
+    var ida string
+
+    for rows.Next() {
+        err = rows.Scan(&ida)
+        if err != nil { /* error handling */}
+        items = append(items, &User{Name: ida})
+    }
+
+    w.Header().Set("Content-Type", "application/json;charset=UTF-8")
+    w.WriteHeader(http.StatusOK)
+
+    if err := json.NewEncoder(w).Encode(items); err != nil {
         panic(err)
     }
 }

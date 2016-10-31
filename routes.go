@@ -36,4 +36,10 @@ var routes = Routes{
         "/mangas",
         MangasShow,
     },
+    Route{
+        "UserIndex",
+        "GET",
+        "/users",
+        UsersShow,
+    },
 }
