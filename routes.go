@@ -19,18 +19,6 @@ var routes = Routes{
         Index,
     },
     Route{
-        "TodoIndex",
-        "GET",
-        "/todos",
-        TodoIndex,
-    },
-    Route{
-        "TodoShow",
-        "GET",
-        "/todos/{todoId}",
-        TodoShow,
-    },
-    Route{
         "MangaIndex",
         "GET",
         "/mangas",
@@ -41,5 +29,11 @@ var routes = Routes{
         "GET",
         "/users",
         UsersShow,
+    },
+    Route{
+        "ProjectIndex",
+        "GET",
+        "/projects",
+        ProjectsShow,
     },
 }
